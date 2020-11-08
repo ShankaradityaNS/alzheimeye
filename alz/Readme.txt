@@ -9,3 +9,6 @@ The project sends an email through smtp so i've written my email address as hash
 
 The email account through which the msg is being sent should have adequate permissions and enabling less secure app functionality 
 
+The ppt is given as hackcbs.ppt pls have a look!
+
+go through the proj.mp4 for further instructions
