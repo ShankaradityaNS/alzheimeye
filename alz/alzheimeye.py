@@ -83,13 +83,13 @@ def main():
             server.ehlo()
             server.starttls()
             server.ehlo()
-            server.login('xyz23@gmail.com','*********')     #Email and App Passsword to be entered.#
-            subject='Patient not found in front of the camera pls call him immedietly'
+            server.login('############','**********')     #Email and App Passsword to be entered.#
+            subject='Patient not found in front of the camera please call him immedietly'
             
             msg=f"Subject:{subject}\n\n"
             server.sendmail(
-                'xyz23@gmail.com',          #Email of Sender#
-                'someone@gmail.com',          #Email of Reciever#
+                '##########',          #Email of Sender#
+                '######',          #Email of Reciever#
                 msg
             )
             print('Hey Email has been sent!')
