@@ -1,9 +1,40 @@
 import cv2
+import datetime
+import winsound
+import smtplib
+import requests
+import bs4
+import time
 
 
 def main():
     
-
+    now = datetime.datetime.now().time()
+    if now.hour == 11 and now.minute == 0:
+        success = True
+        freq = 100
+        dur = 50
+          
+         
+        for i in range(0, 10):     
+            winsound.Beep(freq, dur)     
+            freq+= 100
+            dur+= 50
+            print("It's 11:00 time for medicine!")
+        
+    if now.hour == 10 and now.minute == 8:
+        success = True
+        freq = 100
+        dur = 50
+          
+         
+        for i in range(0, 10):     
+            winsound.Beep(freq, dur)     
+            freq+= 100
+            dur+= 50
+            print("It's 1:00 time for lunch!")    
+    
+    
     thres = 0.5
     
     cap = cv2.VideoCapture(0)
@@ -39,12 +70,27 @@ def main():
                 cv2.putText(img,classNames[classId].upper(),(box[0]+10,box[1]+30),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
                 cv2.putText(img,str(round(confidence*100,2)),(box[0]+200,box[1]+30),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
             
+    if classNames[classId].upper() != 'PERSON':
+        
             
+        server=smtplib.SMTP('smtp.gmail.com',587)
+        server.ehlo()
+        server.starttls()
+        server.ehlo()
+        server.login('1justb3@gmail.com','******')     
         
+        subject='The patient is not found if front of the camera so pls call him immedietly'
         
-        
+        msg=f"Subject:{subject}\n\n"
+        server.sendmail(
+            '1justb3@gmail.com',          
+            
+            'mibashyam@gmail.com',          
+            msg
+        )
+        print('Hey Email has been sent!')
+        server.quit()
         cv2.imshow('Output',img)
         cv2.waitKey(1)
-        
 if __name__=='__main__':
     main()
