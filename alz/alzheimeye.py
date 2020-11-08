@@ -70,27 +70,30 @@ def main():
                 cv2.putText(img,classNames[classId].upper(),(box[0]+10,box[1]+30),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
                 cv2.putText(img,str(round(confidence*100,2)),(box[0]+200,box[1]+30),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
             
-    if classNames[classId].upper() != 'PERSON':
-        
             
-        server=smtplib.SMTP('smtp.gmail.com',587)
-        server.ehlo()
-        server.starttls()
-        server.ehlo()
-        server.login('1justb3@gmail.com','******')     
         
-        subject='The patient is not found if front of the camera so pls call him immedietly'
         
-        msg=f"Subject:{subject}\n\n"
-        server.sendmail(
-            '1justb3@gmail.com',          
-            
-            'mibashyam@gmail.com',          
-            msg
-        )
-        print('Hey Email has been sent!')
-        server.quit()
+        
         cv2.imshow('Output',img)
         cv2.waitKey(1)
+        
+        if classNames[classId].upper() != 'PERSON':
+            
+            server=smtplib.SMTP('smtp.gmail.com',587)
+            server.ehlo()
+            server.starttls()
+            server.ehlo()
+            server.login('1justb3@gmail.com','Thisisatest@1')     #Email and App Passsword to be entered.#
+            subject='Patient not found in front of the camera pls call him immedietly'
+            
+            msg=f"Subject:{subject}\n\n"
+            server.sendmail(
+                '1justb3@gmail.com',          #Email of Sender#
+                'mibashyam@gmail.com',          #Email of Reciever#
+                msg
+            )
+            print('Hey Email has been sent!')
+            server.quit()
+        
 if __name__=='__main__':
     main()
